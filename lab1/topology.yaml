@@ -1,0 +1,58 @@
+name: lab1
+
+prefix: ""
+
+mgmt:
+  network: statics
+  ipv4_subnet: 192.168.100.0/24
+
+topology:
+  nodes:
+    pc1:
+      kind: linux
+      image: alpine:latest
+      mgmt_ipv4: 192.168.100.11
+      
+      # setting dhcp-client on pc :
+      #   cmd: sh
+      #   apk update
+      #   apk add busybox
+      #   udhcpc -i eth1
+    pc2:
+      kind: linux
+      image: alpine:latest
+      mgmt_ipv4: 192.168.100.22
+      
+      # setting dhcp-client on pc :
+      #   cmd: sh
+      #   apk update
+      #   apk add busybox
+      #   udhcpc -i eth1
+      
+    sw02_1:
+      kind: vr-ros
+      image: vrnetlab/vr-routeros:6.47.9
+      mgmt_ipv4: 192.168.100.33
+      startup-config: /home/anna/RoutingLabs/Lab1/vrnetlab/routeros/lab1/configs/sw02_1+.rsc
+    sw02_2:
+      kind: vr-ros
+      image: vrnetlab/vr-routeros:6.47.9
+      mgmt_ipv4: 192.168.100.44
+      startup-config: /home/anna/RoutingLabs/Lab1/vrnetlab/routeros/lab1/configs/sw02_2+.rsc
+    sw01:
+      kind: vr-ros
+      image: vrnetlab/vr-routeros:6.47.9
+      mgmt_ipv4: 192.168.100.55
+      startup-config: /home/anna/RoutingLabs/Lab1/vrnetlab/routeros/lab1/configs/sw01+.rsc
+    r01:
+      kind: vr-ros
+      image: vrnetlab/vr-routeros:6.47.9
+      mgmt_ipv4: 192.168.100.66
+      startup-config: /home/anna/RoutingLabs/Lab1/vrnetlab/routeros/lab1/configs/r01+.rsc
+    
+  links:
+    - endpoints: ["r01:eth1", "sw01:eth3"]
+    - endpoints: ["sw02_1:eth1", "sw01:eth1"]
+    - endpoints: ["sw02_2:eth1", "sw01:eth2"]
+    - endpoints: ["sw02_1:eth2", "pc1:eth1"]
+    - endpoints: ["sw02_2:eth2", "pc2:eth1"]
