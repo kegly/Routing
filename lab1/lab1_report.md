@@ -227,3 +227,10 @@ set name=sw02_2
 
 ![image](https://github.com/kegly/Routing/blob/main/lab1/images/topology_draw_io.png "a title") 
 
+
+результат ping 
+
+![image](https://github.com/kegly/Routing/blob/main/lab1/images/Screenshot%20from%202023-11-13%2014-08-01.png)
+![image](https://github.com/kegly/Routing/blob/main/lab1/images/Screenshot%20from%202023-11-13%2014-08-39.png)
+
+
